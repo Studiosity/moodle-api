@@ -11,6 +11,7 @@ module Moodle
         configuration.password = 'batman'
         configuration.service = 'service'
         configuration.token = '183jdmsoa82jasnd'
+        configuration.headers = { 'Authorization' => 'Basic Zm9vOmJhcg==' }
         configuration.format = :xml
         configuration
       end
@@ -35,6 +36,10 @@ module Moodle
         expect(configuration.token).to eq('183jdmsoa82jasnd')
       end
 
+      it '#headers' do
+        expect(configuration.headers).to eq({ 'Authorization' => 'Basic Zm9vOmJhcg==' })
+      end
+
       it '#format defaults to json' do
         expect(configuration.format).to eq(:xml)
       end
@@ -56,6 +61,7 @@ module Moodle
         expect(configuration.username).to eq(nil)
         expect(configuration.password).to eq(nil)
         expect(configuration.service).to eq(nil)
+        expect(configuration.headers).to eq(nil)
         expect(configuration.format).to eq(:json)
       end
 

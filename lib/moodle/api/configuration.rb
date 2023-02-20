@@ -9,6 +9,7 @@ module Moodle
                     :password,
                     :service,
                     :token,
+                    :headers,
                     :format
 
       DEFAULT_FORMAT = :json
@@ -29,6 +30,7 @@ module Moodle
         @password = nil
         @service = nil
         @token = nil
+        @headers = nil
         @format = DEFAULT_FORMAT
       end
 

@@ -22,7 +22,7 @@ module Moodle
           params: filter_params.merge!(moodlewsrestformat: configuration.format,
                                        wsfunction: web_service_name,
                                        wstoken: configuration.token),
-          headers: { 'Accept' => 'json' }
+          headers: { 'Accept' => 'json' }.merge(configuration.headers || {})
         }
       end
 
