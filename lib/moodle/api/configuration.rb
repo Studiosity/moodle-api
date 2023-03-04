@@ -5,6 +5,7 @@ module Moodle
     class Configuration
       attr_writer :token_service
       attr_accessor :host,
+                    :webservice_api_path,
                     :username,
                     :password,
                     :service,
@@ -20,12 +21,14 @@ module Moodle
 
       def initialize(options = {})
         @format = DEFAULT_FORMAT
+        @webservice_api_path = DEFAULT_WEB_SERVICE_API_URL
 
         configure(options)
       end
 
       def reset
         @host = nil
+        @webservice_api_path = DEFAULT_WEB_SERVICE_API_URL
         @username = nil
         @password = nil
         @service = nil
@@ -35,7 +38,7 @@ module Moodle
       end
 
       def web_service_api_url
-        "#{host}#{DEFAULT_WEB_SERVICE_API_URL}"
+        "#{host}#{webservice_api_path}"
       end
 
       def token_api_url

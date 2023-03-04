@@ -49,6 +49,17 @@ module Moodle
         expect(configuration.web_service_api_url).to eq(url)
       end
 
+      context 'when the configuration includes `webservice_api_path`' do
+        let(:configuration) do
+          Configuration.new(host: 'http://example.com', webservice_api_path: '/some/other/path.php')
+        end
+
+        it '#web_service_api_url' do
+          url = 'http://example.com/some/other/path.php'
+          expect(configuration.web_service_api_url).to eq(url)
+        end
+      end
+
       it '#token_api_url' do
         url = 'http://example.com/login/token.php'
         expect(configuration.token_api_url).to eq(url)
@@ -58,6 +69,7 @@ module Moodle
         configuration.reset
 
         expect(configuration.host).to eq(nil)
+        expect(configuration.webservice_api_path).to eq('/webservice/rest/server.php')
         expect(configuration.username).to eq(nil)
         expect(configuration.password).to eq(nil)
         expect(configuration.service).to eq(nil)
